@@ -1,6 +1,6 @@
 # BraceColor
 
-![Build](https://github.com/Ezrnest/BraceColor/workflows/Build/badge.svg)
+![Build](https://github.com/Ezrnest/LatexRainbowBrackets/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
@@ -39,7 +39,7 @@ This plugin requires the TeXiFy IDEA plugin to function properly.
 
 - Manually:
 
-  Download the [latest release](https://github.com/Ezrnest/BraceColor/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/Ezrnest/LatexRainbowBrackets/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
