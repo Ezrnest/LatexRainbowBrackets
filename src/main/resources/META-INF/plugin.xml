@@ -1,8 +1,12 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.ezrnest.bracecolor</id>
-    <name>BraceColor</name>
+    <name>Latex Rainbow Brackets</name>
     <vendor>ezrnest</vendor>
+    <description>
+        This plugin provides rainbow colors for matching braces/brackets/parentheses in latex codes in the editor, enhancing code readability and navigation.
+        This plugin requires the TeXiFy IDEA plugin to function properly.
+    </description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>nl.rubensten.texifyidea</depends>

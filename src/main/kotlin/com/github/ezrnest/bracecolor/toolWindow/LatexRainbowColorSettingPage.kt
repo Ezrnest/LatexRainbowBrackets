@@ -1,7 +1,7 @@
 package com.github.ezrnest.bracecolor.toolWindow
 
 
-import com.github.ezrnest.bracecolor.highlighting.LatexRainbowColors
+import com.github.ezrnest.bracecolor.MyRainbowColors
 import com.intellij.openapi.options.colors.ColorSettingsPage
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.AttributesDescriptor
@@ -10,7 +10,7 @@ import nl.hannahsten.texifyidea.highlighting.LatexSyntaxHighlighter
 
 class LatexColorSettingsPage : ColorSettingsPage {
     // 定义描述符数组，用于显示在设置页面
-    private val ATTRIBUTES = LatexRainbowColors.COLOR_ATTRIBUTES_KEYS.mapIndexed { i, it ->
+    private val ATTRIBUTES = MyRainbowColors.COLOR_ATTRIBUTES_KEYS.mapIndexed { i, it ->
         AttributesDescriptor("Rainbow Bracket Level ${i + 1}", it).apply {
 
         }
@@ -29,20 +29,19 @@ class LatexColorSettingsPage : ColorSettingsPage {
     override fun getDemoText(): String = buildString {
         appendLine("\\documentclass{article}")
         appendLine("\\begin{document}")
-        for (i in LatexRainbowColors.COLOR_ATTRIBUTES_KEYS.indices) {
+        for (i in MyRainbowColors.COLOR_ATTRIBUTES_KEYS.indices) {
             append("<rainbow$i>{</rainbow$i>${i+1} ")
         }
         append("...")
-        for (i in LatexRainbowColors.COLOR_ATTRIBUTES_KEYS.indices.reversed()) {
-            append("<rainbow$i>}</rainbow$i>${i+1} ")
+        for (i in MyRainbowColors.COLOR_ATTRIBUTES_KEYS.indices.reversed()) {
+            append(" ${i+1}<rainbow$i>}</rainbow$i>")
         }
         appendLine()
-        appendLine("<rainbow1></rainbow1>")
         appendLine("\\end{document}")
     }
 
     override fun getAdditionalHighlightingTagToDescriptorMap(): Map<String, TextAttributesKey>{
-        return LatexRainbowColors.COLOR_ATTRIBUTES_KEYS.mapIndexed {
+        return MyRainbowColors.COLOR_ATTRIBUTES_KEYS.mapIndexed {
             index, key ->
             // 创建一个映射，将自定义标签与颜色属性键关联
             "rainbow$index" to key

@@ -1,14 +1,12 @@
-package com.github.ezrnest.bracecolor.highlighting
+package com.github.ezrnest.bracecolor
 
-
-import com.intellij.codeHighlighting.RainbowHighlighter
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.ui.JBColor
 import java.awt.Color
 
-object LatexRainbowColors {
-    // 定义一组好看的自定义颜色键，轮换使用（7种彩虹渐变）
+object MyRainbowColors {
+    // 定义一组好看的自定义颜色键，轮换使用
 
     val DEFAULT_COLORS = listOf(
         JBColor(Color(135, 206, 250), Color(70, 130, 180)), // 天空蓝
@@ -29,19 +27,23 @@ object LatexRainbowColors {
         }
     }
 
-    val COLOR_ATTRIBUTES_KEYS = RainbowHighlighter.RAINBOW_COLOR_KEYS.mapIndexed { index, k ->
-        TextAttributesKey.createTextAttributesKey(
-            "LATEX_RAINBOW_COLOR_$index",
-            k
-        )
+    val COLOR_ATTRIBUTES_KEYS = DEFAULT_COLOR_ATTRIBUTES.mapIndexed { index, color ->
+        @Suppress("DEPRECATION")
+        TextAttributesKey.createTextAttributesKey("LATEX_RAINBOW_COLOR_$index",color)
     }
+
+//    val COLOR_ATTRIBUTES_KEYS = RainbowHighlighter.RAINBOW_COLOR_KEYS.mapIndexed { index, k ->
+//        TextAttributesKey.createTextAttributesKey(
+//            "LATEX_RAINBOW_COLOR_$index",
+//            k
+//        )
+//    }
 
     fun getColorAttributes(level: Int): TextAttributesKey {
         // 根据层级获取对应的颜色属性键
         COLOR_ATTRIBUTES_KEYS.apply {
             return get(level % size)
         }
-
     }
 
 }

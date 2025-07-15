@@ -1,5 +1,6 @@
 package com.github.ezrnest.bracecolor.highlighting
 
+import com.github.ezrnest.bracecolor.MyRainbowColors
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
@@ -23,7 +24,6 @@ class LatexRainbowAnnotator : Annotator, DumbAware {
                 LatexTypes.OPEN_BRACKET
                     -> visitOpenBrace(e)
 
-
                 LatexTypes.CLOSE_BRACE,
                 LatexTypes.CLOSE_PAREN,
                 LatexTypes.CLOSE_BRACKET
@@ -39,7 +39,7 @@ class LatexRainbowAnnotator : Annotator, DumbAware {
             if (stack.isEmpty()) return
             val openBrace = stack.pop()
             val level = stack.size + 1  // 当前层级为栈大小 + 1
-            val colorKey = LatexRainbowColors.getColorAttributes(level)
+            val colorKey = MyRainbowColors.getColorAttributes(level)
 
             // 高亮开括号
             holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
