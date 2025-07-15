@@ -8,9 +8,8 @@
     <depends>nl.rubensten.texifyidea</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-<!--        <toolWindow factoryClass="com.github.ezrnest.bracecolor.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
-        <annotator language="Latex" implementationClass="com.github.ezrnest.bracecolor.anno.LatexRainbowAnnotator"/>
+        <annotator language="Latex" implementationClass="com.github.ezrnest.bracecolor.highlighting.LatexRainbowAnnotator"/>
+        <colorSettingsPage implementation="com.github.ezrnest.bracecolor.toolWindow.LatexColorSettingsPage"/>
     </extensions>
 </idea-plugin>

@@ -1,17 +1,18 @@
-package com.github.ezrnest.bracecolor.anno
+package com.github.ezrnest.bracecolor.highlighting
 
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
+import com.intellij.openapi.project.DumbAware
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import nl.hannahsten.texifyidea.file.LatexFile
 import nl.hannahsten.texifyidea.psi.*  // 导入 TeXiFy PSI
 import java.util.*
 
-class LatexRainbowAnnotator : Annotator {
+class LatexRainbowAnnotator : Annotator, DumbAware {
 
-    class RainbowVisitor(val holder: AnnotationHolder) : LatexPsiRecursiveWalker(Int.MAX_VALUE) {
+    private class MyRainbowVisitor(val holder: AnnotationHolder) : LatexPsiRecursiveWalker(Int.MAX_VALUE) {
 
         val stack = Stack<PsiElement>()  // 栈存储开括号和层级
 
@@ -21,6 +22,7 @@ class LatexRainbowAnnotator : Annotator {
                 LatexTypes.OPEN_PAREN,
                 LatexTypes.OPEN_BRACKET
                     -> visitOpenBrace(e)
+
 
                 LatexTypes.CLOSE_BRACE,
                 LatexTypes.CLOSE_PAREN,
@@ -42,13 +44,13 @@ class LatexRainbowAnnotator : Annotator {
             // 高亮开括号
             holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
                 .range(openBrace.textRange)
-                .enforcedTextAttributes(colorKey)
+                .textAttributes(colorKey)
                 .create()
 
             // 高亮闭括号
             holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
                 .range(e.textRange)
-                .enforcedTextAttributes(colorKey)
+                .textAttributes(colorKey)
                 .create()
         }
     }
@@ -56,6 +58,6 @@ class LatexRainbowAnnotator : Annotator {
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element !is LatexFile) return  // 只处理 LaTeX 内容
-        element.accept(RainbowVisitor(holder))
+        element.accept(MyRainbowVisitor(holder))
     }
 }
