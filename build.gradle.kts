@@ -101,7 +101,7 @@ intellijPlatform {
 
     pluginVerification {
         ides {
-            recommended()
+            ide("IC-2025.1")
         }
     }
     buildSearchableOptions = false
