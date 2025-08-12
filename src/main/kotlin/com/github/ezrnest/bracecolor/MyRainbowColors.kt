@@ -8,7 +8,7 @@ import java.awt.Color
 object MyRainbowColors {
     // 定义一组好看的自定义颜色键，轮换使用
 
-    val DEFAULT_COLORS = listOf(
+    private val DEFAULT_COLORS = listOf(
         JBColor(Color(135, 206, 250), Color(70, 130, 180)), // 天空蓝
         JBColor(Color(255, 228, 181), Color(255, 160, 120)), // 浅橙色
         JBColor(Color(221, 160, 221), Color(238, 130, 238)),// 紫色
@@ -19,7 +19,7 @@ object MyRainbowColors {
         JBColor(Color(75, 0, 130), Color(138, 43, 226)), // 靛蓝和紫色
     )
 
-    val DEFAULT_COLOR_ATTRIBUTES = DEFAULT_COLORS.map {
+    private val DEFAULT_COLOR_ATTRIBUTES = DEFAULT_COLORS.map {
         TextAttributes().apply {
             foregroundColor = it
             // 可以添加其他属性，如粗体或背景色，如果需要
@@ -31,13 +31,6 @@ object MyRainbowColors {
         @Suppress("DEPRECATION")
         TextAttributesKey.createTextAttributesKey("LATEX_RAINBOW_COLOR_$index",color)
     }
-
-//    val COLOR_ATTRIBUTES_KEYS = RainbowHighlighter.RAINBOW_COLOR_KEYS.mapIndexed { index, k ->
-//        TextAttributesKey.createTextAttributesKey(
-//            "LATEX_RAINBOW_COLOR_$index",
-//            k
-//        )
-//    }
 
     fun getColorAttributes(level: Int): TextAttributesKey {
         // 根据层级获取对应的颜色属性键
